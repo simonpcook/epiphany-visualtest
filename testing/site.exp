@@ -1,0 +1,15 @@
+# If the boards directory does not exist, create it, then add our board directory
+if ![info exists boards_dir] {
+  set boards_dir {}
+}
+
+#Then add our directory
+lappend boards_dir "[file dirname $env(DEJAGNU)]/boards"
+
+# Use 16core paralella prototype board
+global target_list
+  case "$target_triplet" in {
+    { "epiphany-*-elf" } {
+        set target_list { "epiphany-proto" }
+    }
+  }
